@@ -11,7 +11,7 @@
 
 void main(){
 
-  InstructionBrut instruct = {"J", "3", NULL, NULL};
+  InstructionBrut instruct = {"JAL", "3", NULL, NULL};
 
   charToHexa(instruct);
 
@@ -70,12 +70,12 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
 
   for(i = 0; i < NBINSTRUCTIONJ * 2; i += 2){//on fait défiler le tableau d'instruction
 
-    if( strlen(instruction) == strlen(instrucionJ[i][0])){//si l'instruction testée a la meme taille que celle dans le tableau
+    if( strlen(instruction) == strlen(instrucionJ[i])){//si l'instruction testée a la meme taille que celle dans le tableau
     j = 0;
     match = 1;
-      while ((j < strlen(instruction)) || (match == 1)) {//verifie que l'instruction soit la meme, caractere par caractere
+      while ((j < strlen(instruction)) && (match == 1)) {//verifie que l'instruction soit la meme, caractere par caractere
         if( instruction[j] != instrucionJ[j][0]){//teste le caractere i
-          match == 0;
+          match = 0;
         }
         j++;
       }
@@ -84,7 +84,7 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
 
   }
 
-  printf("L'instruction %s correspond à la valeur: %s", instruction, instrucionJ[val++]);
+  printf("L'instruction %s correspond à la valeur: %s\n", instruction, instrucionJ[val++]);
 
 }
 /*
