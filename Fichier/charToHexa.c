@@ -11,9 +11,7 @@
 
 void main(){
 
-  InstructionBrut *instruct;
   InstructionBrut instructBis[2] = {{"J", "3", NULL, NULL},{"JAL", "3", NULL, NULL}};
-  instruct = &instructBis;
 
   charToHexa(instructBis);
 
@@ -26,38 +24,48 @@ void main(){
 
 void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
 
-  char resultat [9] = {0};//8 caractere d'instruction, + 1 pour la sentinelle
   int i = 0;
+  while('instruction[i].Instruc' != NULL){
 
-  //Cas instruction System, pas de parametre
-  if(instruction[0].Operande1 == NULL){
+    char resultatHexa [9] = {0};//8 caractere d'instruction, + 1 pour la sentinelle
+    char resultatBinaire [33] = {0};
+
+    //Cas instruction System, pas de parametre
+    if(instruction[i].Operande1 == NULL){
 
 
 
-  }
-
-  //séparation instruction type J, I, r
-  if(instruction[0].Operande2 == NULL){//dans le cas d'une instruction de type J
-
-    while(i<2){
-    convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
-    i++;
     }
+
+    //séparation instruction type J, I, r
+    if(instruction[i].Operande2 == NULL){//dans le cas d'une instruction de type J
+
+      convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
+
+    }
+    /*if(instruction.Operande3 == NULL){//dans le cas d'une instruction de type I
+
+      resultat = convertionInstructionTypeI(instruction.Instruc, instruction.Operande1, instruction.Operande2);
+
+    }
+    else{//dans le cas d'une instruction de type R
+
+      resultat = convertionInstructionTypeR(instruction.Instruc, instruction.Operande1, instruction.Operande2, instruction.Operande3);
+
+    }*/
+
+    //appelle de la fct de convertion de binaireToHexa
+
+
+    i++;
+
   }
-  /*if(instruction.Operande3 == NULL){//dans le cas d'une instruction de type I
-
-    resultat = convertionInstructionTypeI(instruction.Instruc, instruction.Operande1, instruction.Operande2);
-
-  }
-  else{//dans le cas d'une instruction de type R
-
-    resultat = convertionInstructionTypeR(instruction.Instruc, instruction.Operande1, instruction.Operande2, instruction.Operande3);
-
-  }*/
-
 }
 
-void convertionInstructionTypeJ (char* instruction, char* operande){
+char* convertionInstructionTypeJ (char* instruction, char* operande){
+
+  //pointeur sur un tableau de 32 carac, retour en binaire
+  char* valeurRetourBinaire = malloc(32 * sizeof(int));
 
   /*
   * stockage des instructions de typeJ,
@@ -92,8 +100,19 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
 
   }
 
-  printf("L'instruction %s correspond à la valeur: %s\n", instruction, instrucionJ[(val+1)]);
+  i = 0;
+  while(i < 6){//on ecrit dans la chaine de carac reponse, l'instruction
+
+    valeurRetourBinaire[i] = instrucionJ[val + 1][i];
+
+  }
+
+  printf("L'instruction %s correspond à la valeur: %s\n", instruction, valeurRetourBinaire);
+
+  return(valeurRetourBinaire);
+
 }
+
 /*
 char* convertionInstructionTypeI (char instruction, char operande1, char operande2){
 
