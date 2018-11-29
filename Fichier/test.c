@@ -27,11 +27,13 @@ int calculTaille(char* chaine){
 
 void main(){
 
-  char chaine[5] = {4,8,5,2};
+  /*char chaine[5] = {4,8,5,2};
   int taille = calculTaille(chaine);
   printf("%d\n", taille);
   int val = convAphaToDec(chaine, 1, taille);
 
-  printf("%d\n",val );
+  printf("%d\n",val );*/
+
+  printf("%x\n", 16 );
 
 }
