@@ -4,59 +4,83 @@
 
 
 InstructionBrut* Decode(char* Fichier){
-  InstructionBrut* InstructionCoupe = malloc(sizeof(InstructionBrut));
-  InstructionCoupe->Instruc = malloc(sizeof(char)*4);
-  InstructionCoupe->Operande1 = NULL;
-  InstructionCoupe->Operande2 = NULL;
-  InstructionCoupe->Operande2 = NULL;
+  InstructionBrut* InstructionCoupe = malloc(sizeof(InstructionBrut)*100);
+
+  int j = 0;
 
   FILE* Base = NULL;
   Base = fopen(Fichier, "r");
-  char carrac = 'A';
+  char carrac = '1';
   int i = 0;
-  carrac = fgetc(Base);
-  while(carrac != ' ' && carrac != '\n'){
-    InstructionCoupe->Instruc[i] = carrac;
+
+  while(carrac != EOF){
+
+
+    (InstructionCoupe+j)->Instruc = malloc(sizeof(char)*7);
+    (InstructionCoupe+j)->Operande1 = NULL;
+    (InstructionCoupe+j)->Operande2 = NULL;
+    (InstructionCoupe+j)->Operande2 = NULL;
+
+
+
+    i =0;
     carrac = fgetc(Base);
-    i++;
-  }
-  i = 0;
-  if(carrac != '\n'){
-    InstructionCoupe->Operande1 = malloc(sizeof(char)*4);
-    carrac = fgetc(Base);
-    do{
-      InstructionCoupe->Operande1[i] = carrac;
+    while(carrac != ' ' && carrac != ',' && carrac != '\n' && carrac != EOF){
+      (InstructionCoupe+j)->Instruc[i] = carrac;
       carrac = fgetc(Base);
-
       i++;
-    }while(carrac != ' ' && carrac != ',' && carrac != '\n');
-  }
-
-
-  i = 0;
-  if(carrac != '\n'){
-    InstructionCoupe->Operande2 = malloc(sizeof(char)*4);
-    carrac = fgetc(Base);
-    do{
-      InstructionCoupe->Operande2[i] = carrac;
+    }
+    (InstructionCoupe+j)->Instruc[i] = '\0';
+    i = 0;
+    if(carrac != '\n' && carrac != EOF){
+      (InstructionCoupe+j)->Operande1 = malloc(sizeof(char)*2);
       carrac = fgetc(Base);
+      do{
+        (InstructionCoupe+j)->Operande1[i] = carrac;
+        if(carrac != EOF){carrac = fgetc(Base);}
 
-      i++;
-    }while(carrac != ' ' && carrac != ',' && carrac != '\n');
-  }
+        i++;
+
+      }while(carrac != ' ' && carrac != ',' && carrac != '\n' && carrac != EOF);
+
+      (InstructionCoupe+j)->Operande1[i] = '\0';
+    }
 
 
-  i = 0;
-  if(carrac != '\n'){
-    InstructionCoupe->Operande3 = malloc(sizeof(char)*4);
-    carrac = fgetc(Base);
-    do{
-      InstructionCoupe->Operande3[i] = carrac;
+    i = 0;
+    if(carrac != '\n' && carrac != EOF){
+      (InstructionCoupe+j)->Operande2 = malloc(sizeof(char)*4);
       carrac = fgetc(Base);
+      do{
+        (InstructionCoupe+j)->Operande2[i] = carrac;
+        if(carrac != EOF){carrac = fgetc(Base);}
 
-      i++;
-    }while(carrac != ' ' && carrac != ',' && carrac != '\n');
+        i++;
+      }while(carrac != ' ' && carrac != ',' && carrac != '\n' && carrac != EOF);
+      (InstructionCoupe+j)->Operande2[i] = '\0';
+    }
+
+
+    i = 0;
+    if(carrac != '\n' && carrac != EOF){
+      (InstructionCoupe+j)->Operande3 = malloc(sizeof(char)*4);
+      carrac = fgetc(Base);
+      do{
+        (InstructionCoupe+j)->Operande3[i] = carrac;
+        if(carrac != EOF){carrac = fgetc(Base);}
+
+        i++;
+      }while(carrac != '\n' && carrac != EOF);
+      (InstructionCoupe+j)->Operande3[i] = '\0';
+    }
+
+    j++;
   }
+
+
+  (InstructionCoupe+j-1)->Instruc = NULL;
+
+
   fclose(Base);
   return InstructionCoupe;
 }
