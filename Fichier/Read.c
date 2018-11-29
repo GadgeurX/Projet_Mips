@@ -24,13 +24,25 @@ InstructionBrut* Decode(char* Fichier){
 
 
     i =0;
+
     carrac = fgetc(Base);
-    while(carrac != ' ' && carrac != ',' && carrac != '\n' && carrac != EOF){
-      (InstructionCoupe+j)->Instruc[i] = carrac;
+
+    do{
+
+
+      if(carrac >='A' && carrac <= 'Z'){
+        (InstructionCoupe+j)->Instruc[i] = carrac;
+        i++;
+      }
       carrac = fgetc(Base);
-      i++;
-    }
+
+
+    }while(carrac != ' ' && carrac != ',' && carrac != '\n' && carrac != EOF);
     (InstructionCoupe+j)->Instruc[i] = '\0';
+
+
+
+
     i = 0;
     if(carrac != '\n' && carrac != EOF){
       (InstructionCoupe+j)->Operande1 = malloc(sizeof(char)*2);
