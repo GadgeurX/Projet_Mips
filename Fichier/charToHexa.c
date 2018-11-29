@@ -5,10 +5,6 @@
 #include "Read.h"
 #include "charToHexa.h"
 
-#define NBINSTRUCTIONJ 2
-#define NBINSTRUCTIONI
-#define NBINSTRUCTIONR
-
 void main(){
 
   InstructionBrut instructBis[] = {{"J", "3", NULL, NULL},{"JAL", "3", NULL, NULL},{"J", "3", NULL, NULL},{NULL,NULL,NULL,NULL}};
@@ -25,8 +21,10 @@ void main(){
 void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
 
   int i = 0;
-  while(instruction[i].Instruc != NULL){
-    char resultat [9] = {0};//8 caractere d'instruction, + 1 pour la sentinelle
+  while(instruction[i].Instruc != NULL){//arret lorsque plus d'instructions
+
+    char resultatHexa [9] = {0};//8 caractere d'instruction, + 1 pour la sentinelle
+    char resultatBinaire[33] = {0}, *resBin;
 
     //Cas instruction System, pas de parametre
     if(instruction[i].Operande1 == NULL){
@@ -38,7 +36,9 @@ void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
     //séparation instruction type J, I, r
     if(instruction[i].Operande2 == NULL){//dans le cas d'une instruction de type J
 
-      convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
+      resBin = convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
+      printf("adresse de visee de res = %d\n", resBin );
+      printf("%s\n",*resBin );
 
     }
     /*if(instruction.Operande3 == NULL){//dans le cas d'une instruction de type I
@@ -48,31 +48,20 @@ void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
     }
     else{//dans le cas d'une instruction de type R
 
-      resultat = convertionInstructionTypeR(instruction.Instruc, instruction.Operande1, instruction.Operande2, instruction.Operande3);
+      resultat = convertionInstructionTypeR(instruction.Insctruc, instruction.Operande1, instruction.Operande2, instruction.Operande3);
 
     }*/
     i++;
   }
 }
 
-void convertionInstructionTypeJ (char* instruction, char* operande){
-
-  /*
-  * stockage des instructions de typeJ,
-  * tableau de tableau
-  * 2n  colonne, operande,
-  * 2n + 1 colonne, valeur en hexa
-  */
-  char instrucionJ [NBINSTRUCTIONJ * 2][7] = {
-    {"J"}, {"000010"},
-    {"JAL"}, {"000011"}
-  };
+char* convertionInstructionTypeJ (char* instruction, char* operande){
 
   int i = 0;
   int j = 0;
   int match = 1;
   int val=0;
-  char* result;
+  char* result = malloc(sizeof(char));
 
   for(i = 0; i < NBINSTRUCTIONJ * 2; i += 2){//on fait défiler le tableau d'instruction
 
@@ -91,6 +80,15 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
   }
 
   printf("L'instruction %s correspond à la valeur: %s\n", instruction, instrucionJ[(val+1)]);
+  printf("adresse de tab = %d\n", &instrucionJ[val+1] );
+
+  result = &instrucionJ[val+1];
+
+  printf("adresse visee par result = %d\n", result );
+  printf("result = %s\n", *result );
+
+  return(result);//renvoi pointeur sur bon element du tableau
+
 }
 /*
 char* convertionInstructionTypeI (char instruction, char operande1, char operande2){
