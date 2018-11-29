@@ -11,28 +11,38 @@
 
 void main(){
 
-  InstructionBrut instruct = {"J", "3", NULL, NULL};
+  InstructionBrut *instruct;
+  InstructionBrut instructBis[2] = {{"J", "3", NULL, NULL},{"JAL", "3", NULL, NULL}};
+  instruct = &instructBis;
 
-  charToHexa(instruct);
+  charToHexa(instructBis);
 
 }
 
-char* charToHexa( InstructionBrut instruction){//Fonction de redirection
+  /*
+  * On reçoit un tableau de type InstructionBrut
+  * Si l'element Instruc de l'InstructionBrut est == NULL alors fin du tableau
+  */
 
-  char resultat [8] = {0};
+void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
+
+  char resultat [9] = {0};//8 caractere d'instruction, + 1 pour la sentinelle
+  int i = 0;
 
   //Cas instruction System, pas de parametre
-  if(instruction.Operande1 == NULL){
+  if(instruction[0].Operande1 == NULL){
 
 
 
   }
 
   //séparation instruction type J, I, r
-  if(instruction.Operande2 == NULL){//dans le cas d'une instruction de type J
+  if(instruction[0].Operande2 == NULL){//dans le cas d'une instruction de type J
 
-    convertionInstructionTypeJ(instruction.Instruc, instruction.Operande1);
-
+    while(i<2){
+    convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
+    i++;
+    }
   }
   /*if(instruction.Operande3 == NULL){//dans le cas d'une instruction de type I
 
@@ -45,8 +55,6 @@ char* charToHexa( InstructionBrut instruction){//Fonction de redirection
 
   }*/
 
-  return (resultat);
-
 }
 
 void convertionInstructionTypeJ (char* instruction, char* operande){
@@ -58,8 +66,8 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
   * 2n + 1 colonne, valeur en hexa
   */
   char instrucionJ [NBINSTRUCTIONJ * 2][7] = {
-    {'J'}, {'0','0','0','0','1','0'},
-    {'J','A','L'}, {'0','0','0','0','1','1'}
+    {"J"}, {"000010"},
+    {"JAL"}, {"000011"}
   };
 
   int i = 0;
