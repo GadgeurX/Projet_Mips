@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "Read.h"
 #include "charToHexa.h"
@@ -24,7 +25,7 @@ void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
   while(instruction[i].Instruc != NULL){//arret lorsque plus d'instructions
 
     char resultatHexa [9] = {0};//8 caractere d'instruction, + 1 pour la sentinelle
-    char resultatBinaire[33] = {0}, *resBin;
+    char resultatBinaire[33] = {0};
 
     //Cas instruction System, pas de parametre
     if(instruction[i].Operande1 == NULL){
@@ -36,9 +37,7 @@ void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
     //séparation instruction type J, I, r
     if(instruction[i].Operande2 == NULL){//dans le cas d'une instruction de type J
 
-      resBin = convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
-      printf("adresse de visee de res = %d\n", resBin );
-      printf("%s\n",*resBin );
+      convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
 
     }
     /*if(instruction.Operande3 == NULL){//dans le cas d'une instruction de type I
@@ -55,13 +54,13 @@ void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
   }
 }
 
-char* convertionInstructionTypeJ (char* instruction, char* operande){
+void convertionInstructionTypeJ (char* instruction, char* operande){
 
   int i = 0;
   int j = 0;
   int match = 1;
   int val=0;
-  char* result = malloc(sizeof(char));
+  char sortie[33] = {0};
 
   for(i = 0; i < NBINSTRUCTIONJ * 2; i += 2){//on fait défiler le tableau d'instruction
 
@@ -80,14 +79,23 @@ char* convertionInstructionTypeJ (char* instruction, char* operande){
   }
 
   printf("L'instruction %s correspond à la valeur: %s\n", instruction, instrucionJ[(val+1)]);
-  printf("adresse de tab = %d\n", &instrucionJ[val+1] );
 
-  result = &instrucionJ[val+1];
+  for(i=0; i<6; i++){
+    sortie[i] = instruction[i];
+  }
 
-  printf("adresse visee par result = %d\n", result );
-  printf("result = %s\n", *result );
+  //convertion decimale operande
+  int tailleOperande = calculTaille(operande);
+  valeurOperande = convAphaToDec(operande, 1, int tailleOperande);
 
-  return(result);//renvoi pointeur sur bon element du tableau
+  //convertion binaire operande
+  for(i=0; i<26; i++){
+
+
+
+  }
+
+  //
 
 }
 /*
@@ -102,3 +110,28 @@ char* convertionInstructionTypeR (char instruction, char operande1, char operand
 
 
 }*/
+
+
+
+int convAphaToDec(char* chaine, int i, int taille){
+
+  if (i == taille){
+    return(chaine[0]);
+  }else{
+    return(chaine[taille - i] + (10 * convAphaToDec(chaine, i+1, taille)));
+  }
+
+}
+
+int calculTaille(char* chaine){//mettre des chaines de tailles fixes!!!
+
+  int i = 0;
+  while('chaine[i]' != '\0'){
+
+    i++;
+
+  }
+
+  return(i);
+
+}

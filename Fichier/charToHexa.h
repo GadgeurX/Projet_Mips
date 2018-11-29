@@ -6,9 +6,12 @@
 #define NBINSTRUCTIONR
 
 void charToHexa( InstructionBrut instruction[]);//Fonction de redirection
-char* convertionInstructionTypeJ (char* instruction, char* operande1);
+void convertionInstructionTypeJ (char* instruction, char* operande1);
 char* convertionInstructionTypeI (char* instruction, char* operande1, char* operande2);
 char* convertionInstructionTypeR (char* instruction, char* operande1, char* operande2, char* operande3);
+
+int convAphaToDec(char* chaine, int i, int taille);
+int calculTaille(char* chaine)
 
 /*
 * stockage des instructions de typeJ,
