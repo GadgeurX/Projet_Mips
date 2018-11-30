@@ -1,19 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "Read.h"
 #include "charToHexa.h"
 
-#define NBINSTRUCTIONJ 2
-#define NBINSTRUCTIONI
-#define NBINSTRUCTIONR
-
 void main(){
 
-  InstructionBrut *instruct;
-  InstructionBrut instructBis[2] = {{"J", "3", NULL, NULL},{"JAL", "3", NULL, NULL}};
-  instruct = &instructBis;
+  InstructionBrut instructBis[] = {{"J", "3", NULL, NULL},{"JAL", "3", NULL, NULL},{"J", "3", NULL, NULL},{NULL,NULL,NULL,NULL}};
 
   charToHexa(instructBis);
 
@@ -26,55 +21,46 @@ void main(){
 
 void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
 
-  char resultat [9] = {0};//8 caractere d'instruction, + 1 pour la sentinelle
   int i = 0;
+  while(instruction[i].Instruc != NULL){//arret lorsque plus d'instructions
 
-  //Cas instruction System, pas de parametre
-  if(instruction[0].Operande1 == NULL){
+    char resultatHexa [9] = {0};//8 caractere d'instruction, + 1 pour la sentinelle
+    char resultatBinaire[33] = {0};
+
+    //Cas instruction System, pas de parametre
+    if(instruction[i].Operande1 == NULL){
 
 
 
-  }
-
-  //séparation instruction type J, I, r
-  if(instruction[0].Operande2 == NULL){//dans le cas d'une instruction de type J
-
-    while(i<2){
-    convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
-    i++;
     }
+
+    //séparation instruction type J, I, r
+    if(instruction[i].Operande2 == NULL){//dans le cas d'une instruction de type J
+
+      convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
+
+    }
+    /*if(instruction.Operande3 == NULL){//dans le cas d'une instruction de type I
+
+      resultat = convertionInstructionTypeI(instruction.Instruc, instruction.Operande1, instruction.Operande2);
+
+    }
+    else{//dans le cas d'une instruction de type R
+
+      resultat = convertionInstructionTypeR(instruction.Insctruc, instruction.Operande1, instruction.Operande2, instruction.Operande3);
+
+    }*/
+    i++;
   }
-  /*if(instruction.Operande3 == NULL){//dans le cas d'une instruction de type I
-
-    resultat = convertionInstructionTypeI(instruction.Instruc, instruction.Operande1, instruction.Operande2);
-
-  }
-  else{//dans le cas d'une instruction de type R
-
-    resultat = convertionInstructionTypeR(instruction.Instruc, instruction.Operande1, instruction.Operande2, instruction.Operande3);
-
-  }*/
-
 }
 
 void convertionInstructionTypeJ (char* instruction, char* operande){
-
-  /*
-  * stockage des instructions de typeJ,
-  * tableau de tableau
-  * 2n  colonne, operande,
-  * 2n + 1 colonne, valeur en hexa
-  */
-  char instrucionJ [NBINSTRUCTIONJ * 2][7] = {
-    {"J"}, {"000010"},
-    {"JAL"}, {"000011"}
-  };
 
   int i = 0;
   int j = 0;
   int match = 1;
   int val=0;
-  char* result;
+  char sortie[33] = {0};
 
   for(i = 0; i < NBINSTRUCTIONJ * 2; i += 2){//on fait défiler le tableau d'instruction
 
@@ -93,6 +79,35 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
   }
 
   printf("L'instruction %s correspond à la valeur: %s\n", instruction, instrucionJ[(val+1)]);
+
+  for(i=0; i<6; i++){
+    sortie[i] = instruction[i];
+  }
+
+  //convertion decimale operande
+  int tailleOperande = calculTaille(operande);
+  valeurOperande = convAphaToDec(operande, 1, int tailleOperande);
+
+  //convertion binaire operande, et racollage
+  for(i = 25; i >= 0; i--){
+
+    if(valeurOperande > (pow(2, i))){
+      sortie[25 - i + 6] = 1;
+      valeurOperande -= pow(2,i);
+    }else{
+      sortie[25 - i + 6] = 0;
+    }
+
+  }
+
+  //convertion hexa
+  for(i=0, i<32, i += 4){
+
+  }
+
+
+  //
+
 }
 /*
 char* convertionInstructionTypeI (char instruction, char operande1, char operande2){
@@ -106,3 +121,26 @@ char* convertionInstructionTypeR (char instruction, char operande1, char operand
 
 
 }*/
+
+int convAphaToDec(char* chaine, int i, int taille){
+
+  if (i == taille){
+    return(chaine[0]);
+  }else{
+    return(chaine[taille - i] + (10 * convAphaToDec(chaine, i+1, taille)));
+  }
+
+}
+
+int calculTaille(char* chaine){//mettre des chaines de tailles fixes!!!
+
+  int i = 0;
+  while('chaine[i]' != '\0'){
+
+    i++;
+
+  }
+
+  return(i);
+
+}
