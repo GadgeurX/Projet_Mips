@@ -88,12 +88,23 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
   int tailleOperande = calculTaille(operande);
   valeurOperande = convAphaToDec(operande, 1, int tailleOperande);
 
-  //convertion binaire operande
-  for(i=0; i<26; i++){
+  //convertion binaire operande, et racollage
+  for(i = 25; i >= 0; i--){
 
-
+    if(valeurOperande > (pow(2, i))){
+      sortie[25 - i + 6] = 1;
+      valeurOperande -= pow(2,i);
+    }else{
+      sortie[25 - i + 6] = 0;
+    }
 
   }
+
+  //convertion hexa
+  for(i=0, i<32, i += 4){
+    
+  }
+
 
   //
 
@@ -110,8 +121,6 @@ char* convertionInstructionTypeR (char instruction, char operande1, char operand
 
 
 }*/
-
-
 
 int convAphaToDec(char* chaine, int i, int taille){
 
