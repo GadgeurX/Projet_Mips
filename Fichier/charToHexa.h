@@ -1,12 +1,29 @@
 #ifndef charToHexa_H_
 #define charToHexa_H_
 
+#define NBINSTRUCTIONJ 2
+#define NBINSTRUCTIONI
+#define NBINSTRUCTIONR
+
 void charToHexa( InstructionBrut instruction[]);//Fonction de redirection
-char* convertionInstructionTypeJ (char* instruction, char* operande1);
+void convertionInstructionTypeJ (char* instruction, char* operande1);
 char* convertionInstructionTypeI (char* instruction, char* operande1, char* operande2);
 char* convertionInstructionTypeR (char* instruction, char* operande1, char* operande2, char* operande3);
 
-//tableau de convertion pour caractere
+int convAphaToDec(char* chaine, int i, int taille);
+int calculTaille(char* chaine)
+
+/*
+* stockage des instructions de typeJ,
+* tableau de tableau
+* 2n  colonne, operande,
+* 2n + 1 colonne, valeur en hexa
+*/
+char instrucionJ [NBINSTRUCTIONJ * 2][7] = {
+    {"J"}, {"000010"},
+    {"JAL"}, {"000011"}
+  };
+
 char binaireToHexa[33][5] = {
   {"0000"},{"0"},
   {"0001"},{"1"},
