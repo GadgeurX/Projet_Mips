@@ -19,5 +19,5 @@
     }while (((*(premier+i)).Instruc != NULL));
     free(premier);
   }
-  else{printf("j'ai pas reusii a ouvrir les fichier");}
+  else{printf("j'ai pas reussi a ouvrir les fichier");}
 }
