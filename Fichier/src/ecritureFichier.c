@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "ecritureFichier.h"
-
+#include "fonctions.h"
 
 
 void ecrireFichier(char* instruct){
@@ -30,13 +30,15 @@ void ecrireFichier(char* instruct){
 
 int main(){
 
-  char instruction[7] =  {'0','0','0','0','1','0'};
+  char instruction[9] =  {'0','8','0','0','0','0','0','6'};
 
   ecrireFichier(instruction);
 
-  char instruction2[7] = {'0','0','0','0','1','1'};
+  char instruction2[9] = {'0','8','0','0','0','0','0','A'};
 
 
   ecrireFichier(instruction2);
+
+  lireCodeHexa();
 return 0;
 }
