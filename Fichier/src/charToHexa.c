@@ -38,14 +38,15 @@ void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
     //séparation instruction type J, I, r
     if(instruction[i].Operande2 == NULL){//dans le cas d'une instruction de type J
 
+      //Ca marche!!!!
       convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
 
-    }
-    /*if(instruction.Operande3 == NULL){//dans le cas d'une instruction de type I
+    }/*
+    if(instruction.Operande3 == NULL){//dans le cas d'une instruction de type I
 
       resultat = convertionInstructionTypeI(instruction.Instruc, instruction.Operande1, instruction.Operande2);
 
-    }
+    }/*
     else{//dans le cas d'une instruction de type R
 
       resultat = convertionInstructionTypeR(instruction.Insctruc, instruction.Operande1, instruction.Operande2, instruction.Operande3);
@@ -67,11 +68,11 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
 
   for(i = 0; i < NBINSTRUCTIONJ * 2; i += 2){//on fait défiler le tableau d'instruction
 
-    if( strlen(instruction) == strlen(instrucionJ[i])){//si l'instruction testée a la meme taille que celle dans le tableau
+    if( strlen(instruction) == strlen(instructionJ[i])){//si l'instruction testée a la meme taille que celle dans le tableau
     j = 0;
     match = 1;
       while ((j < strlen(instruction)) && (match == 1)) {//verifie que l'instruction soit la meme, caractere par caractere
-        if( instruction[j] != instrucionJ[i][j]){//teste le caractere i
+        if( instruction[j] != instructionJ[i][j]){//teste le caractere i
           match = 0;
         }
         j++;
@@ -81,10 +82,10 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
 
   }
 
-  printf("L'instruction %s correspond à la valeur: %s\n", instruction, instrucionJ[(val+1)]);
+  printf("L'instruction %s correspond à la valeur: %s\n", instruction, instructionJ[(val+1)]);
 
   for(i=0; i<6; i++){
-    sortie[i] = instrucionJ[val+1][i];
+    sortie[i] = instructionJ[val+1][i];
   }
   printf("sortie tmp = %s\n", sortie );
 
@@ -95,8 +96,7 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
   int valeurOperande = convAphaToDec(operande, 1, tailleOperande);
   printf("val= %d\n", valeurOperande);
 
-  //convertion binaire operande
-  char opBin[26] = {0};
+  //convertion binaire operande et racollage
   for(i = 25; i >= 0; i--){
 
     if(valeurOperande >= (pow(2, i))){
@@ -109,8 +109,6 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
     printf("i = %d, valeurOperande = %d, sortie = %s\n", i, valeurOperande, sortie );
 
   }
-  //racollage
-
 
   //convertion hexa---Fonctionnelle----OKAY->
   for(i=0; i<8; i ++){
@@ -140,13 +138,13 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
   printf("%s\n", reponse );
 
 }
-/*
-char* convertionInstructionTypeI (char instruction, char operande1, char operande2){
+
+void convertionInstructionTypeI (char* instruction, char* operande1, char* operande2){
 
 
 
 }
-
+/*
 char* convertionInstructionTypeR (char instruction, char operande1, char operande2, char operande3){
 
 

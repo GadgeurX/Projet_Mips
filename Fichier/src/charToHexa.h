@@ -2,13 +2,13 @@
 #define charToHexa_H_
 
 #define NBINSTRUCTIONJ 2
-#define NBINSTRUCTIONI
+#define NBINSTRUCTIONI 8
 #define NBINSTRUCTIONR
 
 void charToHexa( InstructionBrut instruction[]);//Fonction de redirection
 void convertionInstructionTypeJ (char* instruction, char* operande1);
-char* convertionInstructionTypeI (char* instruction, char* operande1, char* operande2);
-char* convertionInstructionTypeR (char* instruction, char* operande1, char* operande2, char* operande3);
+void convertionInstructionTypeI (char* instruction, char* operande1, char* operande2);
+void convertionInstructionTypeR (char* instruction, char* operande1, char* operande2, char* operande3);
 
 int convAphaToDec(char* chaine, int i, int taille);
 int calculTaille(char* chaine);
@@ -19,10 +19,21 @@ int calculTaille(char* chaine);
 * 2n  colonne, operande,
 * 2n + 1 colonne, valeur en hexa
 */
-char instrucionJ [NBINSTRUCTIONJ * 2][7] = {
+char instructionJ [NBINSTRUCTIONJ * 2][7] = {
     {"J"}, {"000010"},
     {"JAL"}, {"000011"}
   };
+
+char instructionI [NBINSTRUCTIONI * 2][7] = {
+    {"ADDI"}, {"001000"},
+    {"LW"}, {"100011"},
+    {"SW"}, {"101011"},
+    {"LUI"}, {"001111"},
+    {"BEQ"}, {"000100"},
+    {"BNE"}, {"000101"},
+    {"BGTZ"}, {"000111"},
+    {"BLEZ"}, {"000110"}
+};
 
 char binaireToHexa[33][5] = {
   {"0000"},{"0"},
