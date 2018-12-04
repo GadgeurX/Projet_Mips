@@ -2,7 +2,7 @@
 SRC_PATH = src/
 
 
-Mips : $(SRC_PATH)MIPS.c $(SRC_PATH)Read.c
+Mips : $(SRC_PATH)MIPS.c $(SRC_PATH)Read.c $(SRC_PATH)Registre.c
 	gcc -o $@ -Wall $^
 	clear
 	./Mips Test/in.txt

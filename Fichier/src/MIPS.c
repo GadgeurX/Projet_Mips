@@ -1,6 +1,7 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include "Read.h"
+ #include "Registre.h"
 
 
 
@@ -18,6 +19,13 @@
       i++;
     }while (((*(premier+i)).Instruc != NULL));
     free(premier);
+
+    printf("\n\n\n\n\n\n\n");
+
+    Registre regi;
+    regi = Init();
+    printf("%d\n", regi->zero);
+
   }
   else{printf("j'ai pas reussi a ouvrir les fichier");}
 }
