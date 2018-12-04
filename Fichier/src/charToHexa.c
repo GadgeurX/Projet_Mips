@@ -7,13 +7,7 @@
 #include "charToHexa.h"
 #include "ecritureFichier.h"
 
-void main(){
 
-  InstructionBrut instructBis[] = {{"J", "3348522", NULL, NULL},{"JAL", "4682144", NULL, NULL},{"J", "3", NULL, NULL},{NULL,NULL,NULL,NULL}};
-
-  charToHexa(instructBis);
-
-}
 
   /*
   * On reçoit un tableau de type InstructionBrut

@@ -25,28 +25,24 @@ InstructionBrut* Decode(char* Fichier){
 
     i =0;
 
-    carrac = fgetc(Base);
+    if(carrac != EOF){carrac = fgetc(Base);}
 
     do{
-
-
       if(carrac >='A' && carrac <= 'Z'){
         (InstructionCoupe+j)->Instruc[i] = carrac;
         i++;
       }
-      carrac = fgetc(Base);
-
-
+      if(carrac != EOF){carrac = fgetc(Base);}
     }while(carrac != ' ' && carrac != ',' && carrac != '\n' && carrac != EOF);
     (InstructionCoupe+j)->Instruc[i] = '\0';
 
 
-
-
     i = 0;
+
+
     if(carrac != '\n' && carrac != EOF){
       (InstructionCoupe+j)->Operande1 = malloc(sizeof(char)*2);
-      carrac = fgetc(Base);
+      if(carrac != EOF){carrac = fgetc(Base);}
       do{
         (InstructionCoupe+j)->Operande1[i] = carrac;
         if(carrac != EOF){carrac = fgetc(Base);}
@@ -62,7 +58,7 @@ InstructionBrut* Decode(char* Fichier){
     i = 0;
     if(carrac != '\n' && carrac != EOF){
       (InstructionCoupe+j)->Operande2 = malloc(sizeof(char)*4);
-      carrac = fgetc(Base);
+      if(carrac != EOF){carrac = fgetc(Base);}
       do{
         (InstructionCoupe+j)->Operande2[i] = carrac;
         if(carrac != EOF){carrac = fgetc(Base);}
@@ -76,7 +72,7 @@ InstructionBrut* Decode(char* Fichier){
     i = 0;
     if(carrac != '\n' && carrac != EOF){
       (InstructionCoupe+j)->Operande3 = malloc(sizeof(char)*4);
-      carrac = fgetc(Base);
+      if(carrac != EOF){carrac = fgetc(Base);}
       do{
         (InstructionCoupe+j)->Operande3[i] = carrac;
         if(carrac != EOF){carrac = fgetc(Base);}
@@ -88,7 +84,6 @@ InstructionBrut* Decode(char* Fichier){
 
     j++;
   }
-
 
   (InstructionCoupe+j-1)->Instruc = NULL;
 

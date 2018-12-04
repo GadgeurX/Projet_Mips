@@ -27,18 +27,3 @@ void ecrireFichier(char* instruct){
     printf("Erreur lors de l'ouverture du fichier\n");
   }
 }
-
-int main(){
-
-  char instruction[9] =  {'0','8','0','0','0','0','0','6'};
-
-  ecrireFichier(instruction);
-
-  char instruction2[9] = {'0','8','0','0','0','0','0','A'};
-
-
-  ecrireFichier(instruction2);
-
-  lireCodeHexa();
-return 0;
-}

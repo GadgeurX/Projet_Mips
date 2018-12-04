@@ -1,20 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Registre Registre
+typedef struct Registre Registre;
 struct Registre {
-  int zero;
-  int at;
-  int v[2];
-  int a[4];
-  int t[8];
-  int s[8];
-  int t2[2];
-  int k[2];
-  int gp;
-  int sp;
-  int fp;
-  int ra;
+  int* mem;
+  int* zero;
+  int* at;
+  int* v;
+  int* a;
+  int* t1;
+  int* s;
+  int* t2;
+  int* k;
+  int* gp;
+  int* sp;
+  int* fp;
+  int* ra;
+
 };
 
-Registre Init();
+void Init(Registre*);
+
+int LireRegistre(Registre*,int);
+void EcrireRegistre(Registre*, int, int);

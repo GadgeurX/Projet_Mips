@@ -23,8 +23,9 @@
     printf("\n\n\n\n\n\n\n");
 
     Registre regi;
-    regi = Init();
-    printf("%d\n", regi->zero);
+    Init(&regi);
+    EcrireRegistre(&regi, 3, 4);
+    printf("%d\n", LireRegistre(&regi, 3));
 
   }
   else{printf("j'ai pas reussi a ouvrir les fichier");}
