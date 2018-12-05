@@ -2,7 +2,7 @@
 SRC_PATH = src/
 
 
-Mips : $(SRC_PATH)MIPS.c $(SRC_PATH)Read.c $(SRC_PATH)ecritureFichier.c $(SRC_PATH)Registre.c
-	gcc -o $@ -Wall $^
+Mips : $(SRC_PATH)MIPS.c $(SRC_PATH)Read.c $(SRC_PATH)ecritureFichier.c $(SRC_PATH)Registre.c $(SRC_PATH)charToHexa.c
+	gcc -o $@ -Wall -lm $^
 	clear
-	./Mips Test/Test1.txt
+	./Mips Test/Test5.txt

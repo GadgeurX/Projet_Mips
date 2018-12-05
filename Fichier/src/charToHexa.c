@@ -7,7 +7,29 @@
 #include "charToHexa.h"
 #include "ecritureFichier.h"
 
+char instructionJ [NBINSTRUCTIONJ * 2][7] = {
+    {"J"}, {"000010"},
+    {"JAL"}, {"000011"}
+  };
 
+  char binaireToHexa[33][5] = {
+    {"0000"},{"0"},
+    {"0001"},{"1"},
+    {"0010"},{"2"},
+    {"0011"},{"3"},
+    {"0100"},{"4"},
+    {"0101"},{"5"},
+    {"0110"},{"6"},
+    {"0111"},{"7"},
+    {"1000"},{"8"},
+    {"1001"},{"9"},
+    {"1010"},{"A"},
+    {"1011"},{"B"},
+    {"1100"},{"C"},
+    {"1101"},{"D"},
+    {"1110"},{"E"},
+    {"1111"},{"F"},
+  };
 
   /*
   * On reçoit un tableau de type InstructionBrut
@@ -61,11 +83,11 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
 
   for(i = 0; i < NBINSTRUCTIONJ * 2; i += 2){//on fait défiler le tableau d'instruction
 
-    if( strlen(instruction) == strlen(instrucionJ[i])){//si l'instruction testée a la meme taille que celle dans le tableau
+    if( strlen(instruction) == strlen(instructionJ[i])){//si l'instruction testée a la meme taille que celle dans le tableau
     j = 0;
     match = 1;
       while ((j < strlen(instruction)) && (match == 1)) {//verifie que l'instruction soit la meme, caractere par caractere
-        if( instruction[j] != instrucionJ[i][j]){//teste le caractere i
+        if( instruction[j] != instructionJ[i][j]){//teste le caractere i
           match = 0;
         }
         j++;
@@ -75,10 +97,10 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
 
   }
 
-  printf("L'instruction %s correspond à la valeur: %s\n", instruction, instrucionJ[(val+1)]);
+  printf("L'instruction %s correspond à la valeur: %s\n", instruction, instructionJ[(val+1)]);
 
   for(i=0; i<6; i++){
-    sortie[i] = instrucionJ[val+1][i];
+    sortie[i] = instructionJ[val+1][i];
   }
   printf("sortie tmp = %s\n", sortie );
 

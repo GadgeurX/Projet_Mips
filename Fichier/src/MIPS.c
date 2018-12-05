@@ -1,6 +1,7 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include "Read.h"
+ #include "charToHexa.h"
  #include "Registre.h"
 
 
@@ -11,11 +12,9 @@
     InstructionBrut* premier;
     int i = 0;
     do{
+      
       premier = Decode (argv[1]);
-      printf("L'instruction est :%s\n", (*(premier+i)).Instruc);
-      printf("avec l'operande :%s\n", (*(premier+i)).Operande1);
-      if((*(premier+i)).Operande2 != NULL){printf("Et :%s\n", (*(premier+i)).Operande2);}
-      if((*(premier+i)).Operande3 != NULL){printf("Et :%s\n", (*(premier+i)).Operande3);}
+      charToHexa(premier);
       i++;
     }while (((*(premier+i)).Instruc != NULL));
     free(premier);
