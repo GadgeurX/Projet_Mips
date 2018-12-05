@@ -7,7 +7,7 @@
 
 void Init(Registre* reg){
 
-  (*reg).mem = malloc(sizeof(int)*32);
+  (*reg).mem = malloc(sizeof(int)*35);
   (*reg).zero = (*reg).mem+0;
   (*reg).at = (*reg).mem+1;
   (*reg).v = (*reg).mem+2;
@@ -20,6 +20,9 @@ void Init(Registre* reg){
   (*reg).sp =(*reg).mem+29;
   (*reg).fp = (*reg).mem+30;
   (*reg).ra = (*reg).mem+31;
+  (*reg).lo = (*reg).mem+32;
+  (*reg).hi = (*reg).mem+33;
+  (*reg).pc = (*reg).mem+34;
   for(int i = 0; i<32;i++){*((*reg).mem+i) = 0;}
 
 

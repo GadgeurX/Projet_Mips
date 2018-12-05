@@ -16,7 +16,9 @@ struct Registre {
   int* sp;
   int* fp;
   int* ra;
-
+  int* lo;
+  int* hi;
+  int* pc;
 };
 
 void Init(Registre*);
