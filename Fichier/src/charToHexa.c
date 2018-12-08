@@ -6,31 +6,7 @@
 #include "Read.h"
 #include "charToHexa.h"
 #include "ecritureFichier.h"
-
-char instructionJ [NBINSTRUCTIONJ * 2][7] = {
-    {"J"}, {"000010"},
-    {"JAL"}, {"000011"}
-  };
-
-  char binaireToHexa[33][5] = {
-    {"0000"},{"0"},
-    {"0001"},{"1"},
-    {"0010"},{"2"},
-    {"0011"},{"3"},
-    {"0100"},{"4"},
-    {"0101"},{"5"},
-    {"0110"},{"6"},
-    {"0111"},{"7"},
-    {"1000"},{"8"},
-    {"1001"},{"9"},
-    {"1010"},{"A"},
-    {"1011"},{"B"},
-    {"1100"},{"C"},
-    {"1101"},{"D"},
-    {"1110"},{"E"},
-    {"1111"},{"F"},
-  };
-
+#include "variableConvertion.h"
 
   /*
   * On reçoit un tableau de type InstructionBrut
@@ -50,24 +26,25 @@ void charToHexa( InstructionBrut instruction[]){//Fonction de redirection
 
 
 
+    }else{
+      //séparation instruction type J, I, r
+      if(instruction[i].Operande2 == NULL){//dans le cas d'une instruction de type J
+
+        convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
+
+      }else{
+        if((instruction[i].Operande3 == NULL)||(instruction[i].Operande3[0] != "$")){//dans le cas d'une instruction de type I
+
+          convertionInstructionTypeI(instruction[i].Instruc, instruction[i].Operande1, instruction[i].Operande2, instruction[i].Operande3);
+
+        }/*
+        else{//dans le cas d'une instruction de type R
+
+          resultat = convertionInstructionTypeR(instruction.Insctruc, instruction.Operande1, instruction.Operande2, instruction.Operande3);
+
+        }*/
+      }
     }
-
-    //séparation instruction type J, I, r
-    if(instruction[i].Operande2 == NULL){//dans le cas d'une instruction de type J
-
-      convertionInstructionTypeJ(instruction[i].Instruc, instruction[i].Operande1);
-
-    }
-    /*if(instruction.Operande3 == NULL){//dans le cas d'une instruction de type I
-
-      resultat = convertionInstructionTypeI(instruction.Instruc, instruction.Operande1, instruction.Operande2);
-
-    }
-    else{//dans le cas d'une instruction de type R
-
-      resultat = convertionInstructionTypeR(instruction.Insctruc, instruction.Operande1, instruction.Operande2, instruction.Operande3);
-
-    }*/
     i++;
   }
 }
@@ -157,14 +134,14 @@ void convertionInstructionTypeJ (char* instruction, char* operande){
   printf("%s\n", reponse );
 
 }
-/*
-char* convertionInstructionTypeI (char instruction, char operande1, char operande2){
 
+void convertionInstructionTypeI (char* instruction, char* operande1, char* operande2, char* operande3){
 
+  printf("je suis une type I\n" );
 
 }
-
-char* convertionInstructionTypeR (char instruction, char operande1, char operande2, char operande3){
+/*
+void convertionInstructionTypeR (char instruction, char operande1, char operande2, char operande3){
 
 
 
