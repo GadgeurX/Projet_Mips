@@ -2,7 +2,7 @@
 #define charToHexa_H_
 
 #define NBINSTRUCTIONJ 2
-#define NBINSTRUCTIONI
+#define NBINSTRUCTIONI 8
 #define NBINSTRUCTIONR
 
 void charToHexa( InstructionBrut instruction[]);//Fonction de redirection

@@ -5,7 +5,7 @@ BIN_PATH = bin/
 Mips : $(BIN_PATH)MIPS.o $(BIN_PATH)Read.o $(BIN_PATH)ecritureFichier.o $(BIN_PATH)Registre.o $(BIN_PATH)charToHexa.o
 	gcc -o $@ -Wall $^ -lm
 	clear
-	./Mips Test/Test3.txt
+	./Mips Test/Test4.txt
 
 $(BIN_PATH)MIPS.o : $(SRC_PATH)MIPS.c
 	gcc -Wall -c -o $@ $<
