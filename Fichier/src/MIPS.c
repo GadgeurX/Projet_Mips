@@ -12,7 +12,6 @@
     InstructionBrut* premier;
     int i = 0;
     do{
-
       premier = Decode (argv[1]);
       charToHexa(premier);
       i++;
