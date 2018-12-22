@@ -17,6 +17,8 @@
     AfficherMemoireDonnee(memoire);
     EcrireMemDonne(memoire, 120, 300);
     AfficherMemoireDonnee(memoire);
+    Loadprog(memoire, "Test/Test_memProg");
+    AfficherMemoireProg(memoire);
 
   }
   else{printf("j'ai pas reussi a ouvrir les fichier");}

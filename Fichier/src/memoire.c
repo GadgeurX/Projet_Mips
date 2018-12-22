@@ -45,4 +45,11 @@ void EcrireMemDonne(int* mem, int add, int val){
   else{printf("t'as pas le droit\n");}
 }
 
-void Loadprog
+void Loadprog(int* mem, char* Fichier){
+  FILE* Base = NULL;
+  Base = fopen(Fichier, "r");
+  int i = 0;
+  while(fscanf(Base,"%x",mem+i) && i<100){
+    i++;
+  }
+}

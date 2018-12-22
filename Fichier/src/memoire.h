@@ -12,3 +12,5 @@ void AfficherMemoireDonnee(int*);
 void EcrireMemDonne(int*, int, int);
 
 void ChargerProg(int*);
+
+void Loadprog(int*, char*);
