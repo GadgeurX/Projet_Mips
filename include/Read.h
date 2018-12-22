@@ -5,6 +5,7 @@
 #define READ_H_
 typedef struct InstructionBrut InstructionBrut;
 struct InstructionBrut{
+  char* Label;
   char* Instruc;
   char* Operande1;
   char* Operande2;

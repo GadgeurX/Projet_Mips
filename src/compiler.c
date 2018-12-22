@@ -1,8 +1,8 @@
 #include "compiler.h"
-#include "Read.h"
+#include "parse.h"
 
 void compileFile(char* file) {
-    
-InstructionBrut* instructs = Decode(file);
+    raw_instruction* = parse(file);
 
+    
 }
