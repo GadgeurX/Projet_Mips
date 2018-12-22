@@ -17,7 +17,7 @@
     AfficherMemoireDonnee(memoire);
     EcrireMemDonne(memoire, 120, 300);
     AfficherMemoireDonnee(memoire);
-    Loadprog(memoire, "Test/Test_memProg");
+    Loadprog(memoire, "Test/Test2.o");
     AfficherMemoireProg(memoire);
 
   }

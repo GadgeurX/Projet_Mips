@@ -4,7 +4,9 @@
 
 
 InstructionBrut* Decode(char* Fichier){
-  InstructionBrut* InstructionCoupe = malloc(sizeof(InstructionBrut)*100);
+  InstructionBrut* InstructionCoupe = malloc(sizeof(InstructionBrut));
+
+  int nb_instruct = 1;
 
   int j = 0;
 
@@ -81,6 +83,9 @@ InstructionBrut* Decode(char* Fichier){
       }while(carrac != '\n' && carrac != EOF);
       (InstructionCoupe+j)->Operande3[i] = '\0';
     }
+
+  nb_instruct++;
+  InstructionCoupe = realloc(InstructionCoupe, nb_instruct);
 
     j++;
   }

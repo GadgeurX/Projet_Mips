@@ -3,9 +3,9 @@
 #include <string.h>
 
 
-#include "fonctions.h"
+//#include "fonctions.h"
 
-void SSL(int instruct,Registre* reg){
+/*void SSL(int instruct,Registre* reg){
 
 }
 
@@ -224,4 +224,4 @@ void lireCodeHexa(){
   else{
     printf("impossible d'ouvrir ce fichier\n");
   }
-}
+}*/

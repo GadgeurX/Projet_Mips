@@ -1,0 +1,1 @@
+void compileFile(char* file);
