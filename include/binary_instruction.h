@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include "data_instruct.h"
 
 #ifndef BINARY_INSTRUCTION_H_
 #define BINARY_INSTRUCTION_H_
 
 typedef struct binary_instruction_s {
-  uint8_t Instruc;
+  match_instruct_hexa instruction;
   operand Operande1;
   operand Operande2;
   operand Operande3;
