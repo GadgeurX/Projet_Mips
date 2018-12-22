@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-enum instruc_type {J,I,R};
+typedef enum instruc_type_e {J,I,R} instruc_type;
 
 typedef struct match_instruct_hexa match_instruct_hexa;
 struct match_instruct_hexa{
@@ -26,7 +26,7 @@ match_instruct_hexa tab_instruct[] = {
   {"JAL", 0x0C, J,0x00},
   {"LUI", 0x3C, I, 0x00},
   {"MFHI", 0x00, R, 0x40},
-  {"LW"}, 0x8C, I, 0x00},
+  {"LW", 0x8C, I, 0x00},
   {"MULT", 0x00, R, 0x60},
   {"MFLO", 0x00, R, 0x48},
   {"OR", 0x00, R, 0x94},

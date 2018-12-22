@@ -1,8 +1,7 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include "Read.h"
- #include "charToHexa.h"
- #include "Registre.h"
+  #include "Registre.h"
  #include "memoire.h"
 
 
