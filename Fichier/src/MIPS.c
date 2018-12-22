@@ -3,18 +3,20 @@
  #include "Read.h"
  #include "charToHexa.h"
  #include "Registre.h"
-
+ #include "memoire.h"
 
 
 
  int main(int argc, char *argv[]){
 
   if(argc > 0){
-    int* memoire;
+    int *memoire = NULL;
     memoire = InitMem();
-    printf("\n\n%d  ",memoire);
-    printf("%d",*memoire);
-    //AfficherMemoireProg(memoire);
+
+    AfficherMemoireProg(memoire);
+    AfficherMemoireDonnee(memoire);
+    EcrireMemDonne(memoire, 120, 300);
+    AfficherMemoireDonnee(memoire);
 
   }
   else{printf("j'ai pas reussi a ouvrir les fichier");}
