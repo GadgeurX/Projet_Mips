@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#ifndef DATA_INSTRUCT_H_
+#define DATA_INSTRUCT_H_
+
 typedef enum instruc_type_e {J,I,R} instruc_type;
 
 typedef struct match_instruct_hexa match_instruct_hexa;
@@ -39,4 +42,7 @@ match_instruct_hexa tab_instruct[] = {
   {"SW", 0xAC, I, 0x00},
   {"SYSCALL", 0x00, R, 0x30},
   {"XOX", 0x00, R, 0x98},
+  {NULL, 0x00, R, 0x00},
 };
+
+#endif

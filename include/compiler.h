@@ -3,4 +3,4 @@
 
 void compileFile(char* file);
 
-#endif COMPILER_H_
+#endif
