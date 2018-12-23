@@ -1,9 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <signal.h>
 #include "memoire.h"
+
+void sig_handler(int signo)
+{
+  if (signo == SIGINT)
+    printf("[ERROR]: An error has occurred\n");
+}
 
 int main(int argc, char *argv[])
 {
+
+  signal(SIGINT, sig_handler);
 
   if (argc > 0) {
     int *memoire = NULL;
