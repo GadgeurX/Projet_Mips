@@ -5,11 +5,12 @@
 #include <stdlib.h>
 
 typedef struct raw_instruction {
-  char* instruc;
-  char* operande1;
-  char* operande2;
-  char* operande3;
+  char* instruction;
+  char* operand1;
+  char* operand2;
+  char* operand3;
   char* label;
+  size_t line;
 } raw_instruction;
 
 
