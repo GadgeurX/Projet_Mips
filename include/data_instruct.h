@@ -2,10 +2,14 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+<<<<<<< HEAD
 #ifndef DATA_INSTRUCT_H_
 #define DATA_INSTRUCT_H_
 
 typedef enum instruc_type_e {J,I,R} instruc_type;
+=======
+typedef enum instruc_type {J,I,R};
+>>>>>>> createru d'instruction
 
 typedef struct match_instruct_hexa match_instruct_hexa;
 struct match_instruct_hexa{
