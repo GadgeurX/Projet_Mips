@@ -1,14 +1,12 @@
- #include <stdio.h>
- #include <stdlib.h>
- #include "Read.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "Registre.h"
- #include "memoire.h"
+#include "memoire.h"
 
+int main(int argc, char *argv[])
+{
 
-
- int main(int argc, char *argv[]){
-
-  if(argc > 0){
+  if (argc > 0) {
     int *memoire = NULL;
     memoire = InitMem();
 
@@ -18,7 +16,7 @@
     AfficherMemoireDonnee(memoire);
     Loadprog(memoire, "Test/Test2.o");
     AfficherMemoireProg(memoire);
-
+  } else {
+    printf("j'ai pas reussi a ouvrir les fichier");
   }
-  else{printf("j'ai pas reussi a ouvrir les fichier");}
 }

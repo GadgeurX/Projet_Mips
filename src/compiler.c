@@ -4,16 +4,22 @@
 #include "binary_instruction.h"
 #include "data_instruct.h"
 
+/**
+ * 
+ */
 int get_instruction_count(raw_instruction *r_instruction)
 {
     int count = 0;
-    while (!r_instruction->instruc) {
+    while (!r_instruction->instruction) {
         count++;
         r_instruction++;
     }
     return count;
 }
 
+/**
+ * 
+ */
 match_instruct_hexa *get_instruction_from_string(char *instruction)
 {
     match_instruct_hexa *tmp_matching = tab_instruct;
@@ -25,6 +31,9 @@ match_instruct_hexa *get_instruction_from_string(char *instruction)
     return NULL;
 }
 
+/**
+ * 
+ */
 void parse_operand(char *operand_name, operand *operand)
 {
     operand->type = NONE;
@@ -39,23 +48,29 @@ void parse_operand(char *operand_name, operand *operand)
     }
 }
 
+/**
+ * 
+ */
 binary_instruction *process_raw_instruction(raw_instruction *r_instruction)
 {
     binary_instruction *b_instruction = malloc(sizeof(binary_instruction) * get_instruction_count(r_instruction));
-    while (!r_instruction->instruc) {
-        b_instruction->instruction = *get_instruction_from_string(r_instruction->instruc);
-        if (r_instruction->operande2 == NULL && r_instruction->operande3 == NULL && r_instruction->operande1 != NULL) {
-            b_instruction->Operande1.type = INDEX;
-            b_instruction->Operande1.index_offset = atoi(r_instruction->operande1);
+    while (!r_instruction->instruction) {
+        b_instruction->instruction = *get_instruction_from_string(r_instruction->instruction);
+        if (r_instruction->operand2 == NULL && r_instruction->operand3 == NULL && r_instruction->operand1 != NULL) {
+            b_instruction->operand1.type = INDEX;
+            b_instruction->operand1.index_offset = atoi(r_instruction->operand1);
         } else {
-            parse_operand(r_instruction->operande1, &(b_instruction->Operande1));
-            parse_operand(r_instruction->operande2, &(b_instruction->Operande2));
-            parse_operand(r_instruction->operande3, &(b_instruction->Operande3));
+            parse_operand(r_instruction->operand1, &(b_instruction->operand1));
+            parse_operand(r_instruction->operand2, &(b_instruction->operand2));
+            parse_operand(r_instruction->operand3, &(b_instruction->operand3));
         }
         r_instruction++;
     }
 }
 
+/**
+ * Main fonction of the compiler
+ */
 void compileFile(char *file)
 {
     raw_instruction *r_instruction = parse(file);

@@ -17,9 +17,9 @@ typedef struct operand_s {
 
 typedef struct binary_instruction_s {
   match_instruct_hexa instruction;
-  operand Operande1;
-  operand Operande2;
-  operand Operande3;
+  operand operand1;
+  operand operand2;
+  operand operand3;
 } binary_instruction;
 
 #endif // READ_H_
