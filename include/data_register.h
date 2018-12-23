@@ -43,7 +43,7 @@ register_data register_value[] = {
   {"SP", 29},
   {"FP", 30},
   {"RA", 31},
-  {NULL, 0x00},
+  {NULL, 0},
 };
 
 #endif

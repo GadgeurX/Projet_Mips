@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Registre.h"
+/*#include "Registre.h"
 
 
 void InitReg(Registre* reg){
@@ -47,3 +47,4 @@ void AfficherRegistre(Registre* reg){
     printf("le Registre : $%d || valeur : %d\n", i, *((*reg).mem+i));
   }
 }
+*/

@@ -5,6 +5,8 @@
 #include "data_instruct.h"
 #include "data_register.h"
 
+extern match_instruct_hexa *tab_instruct;
+
 /**
  * Get the lenght of raw_instruction array
  */
@@ -27,19 +29,21 @@ match_instruct_hexa *get_instruction_from_string(char *instruction) {
             return tmp_matching;
         tmp_matching++;
     }
+    printf("[ERROR]: Cannot find instruction %s\n", instruction);
     return NULL;
 }
 
 /**
  * Try to return a match_instruct_hexa type from instruction string in tab_instruct
  */
-register_data *get_register_from_string(char *register) {
-    register_data *tmp_matching = register_data;
+register_data *get_register_from_string(char *register_name) {
+    register_data *tmp_matching = register_value;
     while (tmp_matching->name != NULL) {
-        if (strcmp(tmp_matching->name, instruction) == 0)
+        if (strcmp(tmp_matching->name, register_name) == 0)
             return tmp_matching;
         tmp_matching++;
     }
+    printf("[ERROR]: Cannot find register %s\n", register_name);
     return NULL;
 }
 
@@ -58,7 +62,7 @@ void parse_operand(char *operand_name, operand *operand) {
         if (isdigit(*(operand_name + 1)))
             operand->value.registerRef = atoi(operand_name + 1);
         else
-            operand->value.registerRef = register_value
+            operand->value.registerRef = get_register_from_string(operand_name + 1)->value;
     }
 }
 

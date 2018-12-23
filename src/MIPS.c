@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Registre.h"
 #include "memoire.h"
 
 int main(int argc, char *argv[])
